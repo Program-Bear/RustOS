@@ -1,14 +1,14 @@
-#x86_64RustOS测试报告
+# x86_64RustOS测试报告
 复现了王润基的相关工作，在qemu模拟器上测试原ucore上的相关测试样例，获得了如下测试结果：
 
-##针对waitkill的测试（通过测试）：
+## 针对waitkill的测试（通过测试）：
 wait child 1.
 child 2.
 child 1.
 kill parent ok.
 kill child1 ok.
 
-##针对sleep的测试（通过测试）：
+## 针对sleep的测试（通过测试）：
 sleep 1 x 100 slices.
 sleep 2 x 100 slices.
 sleep 3 x 100 slices.
@@ -22,7 +22,7 @@ sleep 10 x 100 slices.
 use 1001 msecs.
 sleep pass.
 
-##针对spin的测试（通过测试）：
+## 针对spin的测试（通过测试）：
 I am the parent. Forking the child...
 I am the parent. Running the child...
 I am the child. spinning ...
@@ -31,7 +31,7 @@ kill returns 0
 wait returns 0
 spin may pass.
 
-##针对sh的测试（未通过测试）：
+## 针对sh的测试（未通过测试）：
 user sh is running!!!$ [ERROR] unknown syscall id: 0x66, args: [0, b00fff47, 1, b00fff28, 80013e, 0]
 [ERROR] Process 2 error:
 TrapFrame {
@@ -59,7 +59,7 @@ TrapFrame {
     ss: 0x2b
 }
 
-##针对forktest的测试（通过测试）：
+## 针对forktest的测试（通过测试）：
 I am child 4
 I am child 3
 I am child 2
@@ -94,7 +94,7 @@ I am child 30
 I am child 29
 forktest pass.
 
-##针对faultread的测试（未通过测试）：
+## 针对faultread的测试（未通过测试）：
 [ERROR] 
 EXCEPTION: Page Fault @ 0x0, code: 0x4
 [ERROR] 
@@ -125,7 +125,7 @@ TrapFrame {
     ss: 0x0
 }
 
-##针对forktree的测试（未通过测试）：
+## 针对forktree的测试（未通过测试）：
 forktree process will sleep 400 ticks
 0002: I am ''
 >> 0004: I am '1'
@@ -162,7 +162,7 @@ forktree process will sleep 400 ticks
 PANIC in /Users/victor/RustOS/RustOS/crate/process/src/scheduler.rs at line 136
     attempt to add with overflow
 
-##针对divzero的测试（未通过测试）：
+## 针对divzero的测试（未通过测试）：
 [ERROR] Process 2 error:
 TrapFrame {
     r15: 0x0,
@@ -189,7 +189,7 @@ TrapFrame {
     ss: 0x2b
 }
 
-##针对yield的测试（通过测试）：
+## 针对yield的测试（通过测试）：
 Hello, I am process 2.
 Back in process 2, iteration 0.
 Back in process 2, iteration 1.
@@ -199,7 +199,7 @@ Back in process 2, iteration 4.
 All done in process 2.
 yield pass.
 
-##针对faultreadkeral的测试（未通过测试）：
+## 针对faultreadkeral的测试（未通过测试）：
 [ERROR] 
 EXCEPTION: Page Fault @ 0xfac00000, code: 0x4
 [ERROR] 
@@ -232,7 +232,7 @@ TrapFrame {
     ss: 0x0
 }
 
-##针对exit的测试（通过测试）：
+## 针对exit的测试（通过测试）：
 I am the parent. Forking the child...
 I am parent, fork a child pid 3
 I am the parent, waiting now..
@@ -240,7 +240,7 @@ I am the child.
 waitpid 3 ok.
 exit pass.
 
-##针对softint的测试（未通过测试）：
+## 针对softint的测试（未通过测试）：
 [ERROR] Process 2 error:
 TrapFrame {
     r15: 0x0,
@@ -267,19 +267,19 @@ TrapFrame {
     ss: 0x2b
 }
 
-##针对badsegment的测试（通过测试）：
+## 针对badsegment的测试（通过测试）：
 user panic at user/badsegment.c:9:
     FAIL: T.T
 
-##针对hello的测试（通过测试）：
+## 针对hello的测试（通过测试）：
 Hello world!!.
 I am process 2.
 hello pass.
 
-##针对ls的测试（通过测试）：
+## 针对ls的测试（通过测试）：
 无输出，由于没有文件系统这样的测试没有意义
 
-##针对priority测试（通过测试）：
+## 针对priority测试（通过测试）：
 priority process will sleep 400 ticks
 child pid 7, acc 4000, time 17346
 child pid 6, acc 4000, time 17347
@@ -295,18 +295,18 @@ main: pid 7, acc 4000, time 17352
 main: wait pids over
 stride sched correct result: 1 1 1 1 1
 
-##针对badarg测试（未通过测试）：
+## 针对badarg测试（未通过测试）：
 [ERROR] 
 
 PANIC in /Users/victor/.rustup/toolchains/nightly-2018-09-18-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/option.rs at line 345
     called `Option::unwrap()` on a `None` value
 
-##针对testbss测试（通过测试）：
+## 针对testbss测试（通过测试）：
 Making sure bss works right...
 user panic at user/testbss.c:14:
     bigarray[14248] isn't cleared!
 
-##针对pgdir测试（未通过测试）：
+## 针对pgdir测试（未通过测试）：
 I am 2, print pgdir.
 [ERROR] unknown syscall id: 0x1f, args: [b00fff78, 80082f, 801a80, 2, b00fff88, 0]
 [ERROR] Process 2 error:
@@ -335,7 +335,7 @@ TrapFrame {
     ss: 0x2b
 }
 
-##针对matrix测试（部分通过测试）：
+## 针对matrix测试（部分通过测试）：
 pid 7 is running (4600 times)!.
 pid 6 is running (1900 times)!.
 pid 5 is running (1100 times)!.
@@ -381,5 +381,5 @@ pid 19 done!.
 pid 13 done!.
 pid 10 done!.
 
-##针对sleepkill测试（通过测试）：
+## 针对sleepkill测试（通过测试）：
 sleepkill pass.
