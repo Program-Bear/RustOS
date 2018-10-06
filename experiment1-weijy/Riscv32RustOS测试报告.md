@@ -1,14 +1,14 @@
-#RiscvRust测试报告
+# RiscvRust测试报告
 复现了王润基的相关工作，在qemu模拟器上测试原ucore上的相关测试样例，获得了如下测试结果：
 
-##针对waitkill的测试（通过测试）：
+## 针对waitkill的测试（通过测试）：
 wait child 1.
 child 2.
 child 1.
 kill parent ok.
 kill child1 ok.
 
-##针对sleep的测试（通过测试）：
+## 针对sleep的测试（通过测试）：
 sleep 1 x 100 slices.
 sleep 2 x 100 slices.
 sleep 3 x 100 slices.
@@ -31,7 +31,7 @@ kill returns 0
 wait returns 0
 spin may pass.
 
-##针对sh的测试（测试没有通过，需要增加0x66号系统调用）：
+## 针对sh的测试（测试没有通过，需要增加0x66号系统调用）：
 user sh is running!!!$ [ERROR] unknown syscall id: 0x66, args: [0, 7000ff97, 1, 7000ff70, 25, 73]
 [ERROR] Process 2 error:
 TrapFrame {
@@ -79,7 +79,7 @@ TrapFrame {
     }
 }
 
-##针对forktest的测试（测试通过）：
+## 针对forktest的测试（测试通过）：
 I am child 31
 I am child 30
 I am child 29
@@ -114,7 +114,7 @@ I am child 1
 I am child 0
 forktest pass.
 
-##针对faultread的测试（测试未通过）：
+## 针对faultread的测试（测试未通过）：
 [ERROR] Process 2 error:
 TrapFrame {
     x: [
@@ -161,7 +161,7 @@ TrapFrame {
     }
 }
 
-##针对forktree的测试（测试未通过）：
+## 针对forktree的测试（测试未通过）：
 forktree process will sleep 400 ticks
 0002: I am ''
 0004: I am '1'
@@ -176,12 +176,12 @@ forktree process will sleep 400 ticks
 [ERROR] PANIC in src/lang.rs at line 22
     out of memory
 
-##针对divzero的测试（测试通过）：
+## 针对divzero的测试（测试通过）：
 value is -1.
 user panic at user/divzero.c:9:
     FAIL: T.T
 
-##针对yield的测试（测试通过）：
+## 针对yield的测试（测试通过）：
 Hello, I am process 2.
 Back in process 2, iteration 0.
 Back in process 2, iteration 1.
@@ -191,7 +191,7 @@ Back in process 2, iteration 4.
 All done in process 2.
 yield pass.
 
-##针对faultreadkernel测试（测试不通过）：
+## 针对faultreadkernel测试（测试不通过）：
 [ERROR] Process 2 error:
 TrapFrame {
     x: [
@@ -238,7 +238,7 @@ TrapFrame {
     }
 }
 
-##针对exit的测试（测试通过）：
+## 针对exit的测试（测试通过）：
 I am the parent. Forking the child...
 I am parent, fork a child pid 3
 I am the parent, waiting now..
@@ -246,22 +246,22 @@ I am the child.
 waitpid 3 ok.
 exit pass.
 
-##针对softint的测试（测试通过）：
+## 针对softint的测试（测试通过）：
 无输出
 
-##针对badarg的测试（测试通过）：
+## 针对badarg的测试（测试通过）：
 user panic at user/badsegment.c:9:
     FAIL: T.T
 
-##针对hello的测试（测试通过）：
+## 针对hello的测试（测试通过）：
 Hello world!!.
 I am process 2.
 hello pass.
 
-##针对ls的测试（测试通过）：
+## 针对ls的测试（测试通过）：
 由于还没有实现文件系统因此该测试没有意义
 
-##针对priority测试（测试通过）：
+## 针对priority测试（测试通过）：
 priority process will sleep 400 ticks
 main: fork ok,now need to wait pids.
 child pid 7, acc 4000, time 13131
@@ -277,7 +277,7 @@ main: pid 7, acc 4000, time 13133
 main: wait pids over
 stride sched correct result: 1 1 1 1 1
 
-##针对badarg测试（测试不通过）：
+## 针对badarg测试（测试不通过）：
 [ERROR] Process 2 error:
 TrapFrame {
     x: [
@@ -324,12 +324,12 @@ TrapFrame {
     }
 }
 
-##针对testbss测试（测试不通过）：
+## 针对testbss测试（测试不通过）：
 [ERROR] 
 PANIC in /Users/victor/.rustup/toolchains/nightly-2018-09-18-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/option.rs at line 1000
     failed to allocate frame
 
-##针对pgdir测试（测试不通过）：
+## 针对pgdir测试（测试不通过）：
 I am 2, print pgdir.
 [ERROR] unknown syscall id: 0x1f, args: [a, ffff6ad9, 2, 0, 15, ffffffff]
 [ERROR] Process 2 error:
@@ -378,7 +378,7 @@ TrapFrame {
     }
 }
 
-##针对matrix测试（测试通过）：
+## 针对matrix测试（测试通过）：
 fork ok.
 pid 25 is running (17900 times)!.
 pid 25 done!.
@@ -424,7 +424,7 @@ matrix pass.
 pid 15 done!.
 pid 12 done!.
 
-##针对sleepkill测试（测试通过）：
+## 针对sleepkill测试（测试通过）：
 [ERROR] 
 
 PANIC in /Users/victor/RustOS/RustOS/crate/process/src/event_hub.rs at line 55
